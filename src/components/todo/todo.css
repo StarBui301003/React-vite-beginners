@@ -1,0 +1,88 @@
+/* components/todo/todo.css */
+.todo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.todo-title {
+  font-family: "Comic Neue", serif;
+  font-weight: bold;
+  font-size: 60px;
+  font-style: normal;
+  color: white;
+  -webkit-text-stroke: 3px black;
+  text-shadow: -3px -3px 0 #fdd835, 3px -3px 0 #fdd835, -3px 3px 0 #fdd835,
+    3px 3px 0 #fdd835, 0px -3px 0 #fdd835, 0px 3px 0 #fdd835, -3px 3px 0 #fdd835,
+    3px 0px 0 #fdd835;
+  background-color: #d50000;
+  padding: 10px 20px;
+  display: inline-block;
+  border-radius: 5px;
+}
+.todo-new {
+  margin: 20px;
+  display: flex;
+}
+.todo-new input {
+  margin-right: 10px;
+  padding: 16px;
+  font-size: 16px;
+  border-radius: 5px;
+  font-family: "Comic Neue", serif;
+  border: none;
+  background-color: rgb(250, 223, 223);
+}
+
+.todo-new button {
+  padding: 10px 18px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background-color: #f90202;
+  font-family: "Comic Neue", serif;
+  font-weight: bold;
+  font-style: normal;
+  color: white;
+  transition: all 0.2s ease-in-out;
+  -webkit-text-stroke: 0.5px black;
+}
+
+.todo-new button:hover {
+  background-color: #b60000;
+}
+
+.todo-data {
+  margin-top: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.todo-image img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
