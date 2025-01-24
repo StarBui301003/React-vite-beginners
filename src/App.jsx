@@ -5,15 +5,10 @@ import TodoImage from "./assets/img/todo-image.png";
 import { useState } from "react";
 const App = () => {
   const [todoList, setTodoList] = useState([
-    { id: 1, name: "Learning React" },
-    { id: 2, name: "Watching youtube" },
+    // { id: 1, name: "Learning React" },
+    // { id: 2, name: "Watching youtube" },
   ]);
-  const name = "Sao";
-  const age = 23;
-  const data = {
-    address: "Can Tho",
-    country: "Vietnam",
-  };
+
   const addNewTodo = (name) => {
     const newTodo = {
       id: randomIntFromInterval(1, 100),
@@ -31,10 +26,13 @@ const App = () => {
     <div className="todo-container">
       <div className="todo-title">Todo List</div>
       <TodoNew addNewTodo={addNewTodo} />
-      <TodoData name={name} age={age} data={data} todoList={todoList} />
-      <div className="todo-image">
-        <img src={TodoImage} />
-      </div>
+      {todoList.length > 0 ? (
+        <TodoData todoList={todoList} />
+      ) : (
+        <div className="todo-image">
+          <img src={TodoImage} />
+        </div>
+      )}
     </div>
   );
 };
