@@ -2,6 +2,7 @@ import { useState } from "react";
 const TodoNew = (props) => {
   const [valueInput, setValueInput] = useState("");
   const { addNewTodo } = props;
+
   //   addNewTodo("Sao");
   const handleClick = () => {
     if (valueInput.length > 0) {
