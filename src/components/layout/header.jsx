@@ -4,7 +4,10 @@ import {
   SettingOutlined,
   HomeOutlined,
   UsergroupAddOutlined,
+  LogoutOutlined,
+  AliwangwangOutlined,
   AuditOutlined,
+  LoginOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useState, useContext } from "react";
@@ -15,7 +18,6 @@ const Header = () => {
   const { user } = useContext(AuthContext);
 
   const onClick = (e) => {
-    console.log("click ", e);
     setCurrent(e.key);
   };
   const items = [
@@ -34,21 +36,31 @@ const Header = () => {
       key: "books",
       icon: <AuditOutlined />,
     },
-    {
-      label: "Cài đặt",
-      key: "setting",
-      icon: <SettingOutlined />,
-      children: [
-        {
-          label: <Link to={"/login"}>Đăng nhập</Link>,
-          key: "login",
-        },
-        {
-          label: <Link to={"/logout"}>Đăng xuất</Link>,
-          key: "logout",
-        },
-      ],
-    },
+
+    ...(!user.id
+      ? [
+          {
+            label: <Link to={"/login"}>Đăng nhập</Link>,
+            key: "register",
+            icon: <LoginOutlined />,
+          },
+        ]
+      : []),
+    ...(user.id
+      ? [
+          {
+            label: `Welcome ${user.fullName}`,
+            key: "setting",
+            icon: <AliwangwangOutlined />,
+            children: [
+              {
+                label: "Đăng xuất",
+                key: "logout",
+              },
+            ],
+          },
+        ]
+      : []),
   ];
 
   return (

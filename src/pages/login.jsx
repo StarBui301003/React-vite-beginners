@@ -25,6 +25,7 @@ const LoginPage = () => {
     if (res.data) {
       message.success("Đăng nhập thành công");
       localStorage.setItem("access_token", res.data.access_token);
+      setUser(res.data.user);
       navigate("/");
     } else {
       notification.error({
@@ -73,7 +74,9 @@ const LoginPage = () => {
                 },
               ]}
             >
-              <Input.Password />
+              <Input.Password
+                onKeyDown={(e) => e.key === "Enter" && form.submit()}
+              />
             </Form.Item>
             <Form.Item>
               <div
