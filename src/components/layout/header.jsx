@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 // import "./header.css";
 import {
   SettingOutlined,
@@ -10,18 +10,20 @@ import {
   LoginOutlined,
 } from "@ant-design/icons";
 import { Menu, message } from "antd";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 import { logoutAPI } from "../../services/api.service";
 const Header = () => {
   const [current, setCurrent] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { user, setUser } = useContext(AuthContext);
 
   const onClick = (e) => {
     setCurrent(e.key);
   };
+
   const handleLogout = async () => {
     const res = await logoutAPI();
     if (res.data) {
@@ -38,6 +40,21 @@ const Header = () => {
       navigate("/");
     }
   };
+
+  useEffect(() => {
+    if (location && location.pathname) {
+      const allRoutes = ["users", "books"];
+      const currentRoute = allRoutes.find(
+        (item) => `/${item}` === location.pathname
+      );
+      if (currentRoute) {
+        setCurrent(currentRoute);
+      } else {
+        setCurrent("home");
+      }
+    }
+  }, [location]);
+
   const items = [
     {
       label: <Link to={"/"}>Home</Link>,
